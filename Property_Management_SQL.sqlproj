@@ -61,11 +61,16 @@
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
     <Folder Include="Post_Deploy" />
+    <Folder Include="Post_Deploy\Iterations" />
+    <Folder Include="Post_Deploy\Iterations\2.0" />
+    <Folder Include="dbo\Stored_Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Properties.sql" />
     <Build Include="dbo\Tables\Property_Units.sql" />
     <Build Include="dbo\Tables\Property_Owner.sql" />
+    <Build Include="dbo\Tables\Version.sql" />
+    <Build Include="dbo\Stored_Procedures\Insert_Image_Properties.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post_Deploy\Script.PostDeployment.sql" />
@@ -73,5 +78,9 @@
   <ItemGroup>
     <None Include="Post_Deploy\Test.sql" />
     <None Include="Property_Management_SQL.publish.xml" />
+    <None Include="Post_Deploy\Iterations\2.0\Insert_Version.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Property_Management_SQL.refactorlog" />
   </ItemGroup>
 </Project>
