@@ -1,9 +1,8 @@
 ﻿CREATE TABLE [dbo].[Property_Units] (
     [Property_Unit_ID]      INT          IDENTITY (1, 1) NOT NULL,
-    [Property_ID]           INT          NULL,
-    [Unit_Street]           VARCHAR (50) NOT NULL,
+    [Property_ID]           INT          NOT NULL,
+    [Unit_Street]           VARCHAR (50) NULL,
     [Unit_Location]         VARCHAR (50) NULL,
-    [Number_Units_Property] INT          NULL,
     [Share_City]            FLOAT (53)   NULL,
     [Share_Electricity]     FLOAT (53)   NULL,
     [Share_Gas]             FLOAT (53)   NULL,
