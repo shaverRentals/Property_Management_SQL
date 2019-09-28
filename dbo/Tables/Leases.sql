@@ -2,6 +2,7 @@
 (
 	[Lease_ID] INT NOT NULL PRIMARY KEY IDENTITY, 
 	[Property_Unit_ID] INT NOT NULL,
+	[Lease_Begin_Date] DATE NULL, 
     [Lease_End_Date] DATE NULL, 
     [Rent_Payment] MONEY NULL, 
     [Security_Deposit] MONEY NULL, 
