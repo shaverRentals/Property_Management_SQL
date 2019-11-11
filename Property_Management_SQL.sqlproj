@@ -77,6 +77,7 @@
     <Build Include="dbo\Tables\Lease_Members.sql" />
     <Build Include="dbo\Tables\People.sql" />
     <Build Include="dbo\Stored_Procedures\Get_Person_Name.sql" />
+    <Build Include="dbo\Tables\Person_Role.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post_Deploy\Script.PostDeployment.sql" />
