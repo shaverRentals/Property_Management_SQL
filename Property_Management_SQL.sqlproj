@@ -64,6 +64,8 @@
     <Folder Include="Post_Deploy\Iterations" />
     <Folder Include="Post_Deploy\Iterations\2.0" />
     <Folder Include="dbo\Stored_Procedures" />
+    <Folder Include="Post_Deploy\Iterations\5.0" />
+    <Folder Include="dbo\Views" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Properties.sql" />
@@ -74,14 +76,15 @@
     <Build Include="dbo\Tables\Leases.sql" />
     <Build Include="dbo\Tables\Lease_Members.sql" />
     <Build Include="dbo\Tables\People.sql" />
+    <Build Include="dbo\Stored_Procedures\Get_Person_Name.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post_Deploy\Script.PostDeployment.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Post_Deploy\Test.sql" />
     <None Include="Property_Management_SQL.publish.xml" />
     <None Include="Post_Deploy\Iterations\2.0\Insert_Version.sql" />
+    <None Include="Post_Deploy\Iterations\5.0\Insert_Version.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Property_Management_SQL.refactorlog" />
