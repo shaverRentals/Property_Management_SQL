@@ -66,6 +66,7 @@
     <Folder Include="dbo\Stored_Procedures" />
     <Folder Include="Post_Deploy\Iterations\5.0" />
     <Folder Include="dbo\Views" />
+    <Folder Include="Post_Deploy\Iterations\6.0" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Properties.sql" />
@@ -78,6 +79,8 @@
     <Build Include="dbo\Tables\People.sql" />
     <Build Include="dbo\Stored_Procedures\Get_Person_Name.sql" />
     <Build Include="dbo\Tables\Person_Role.sql" />
+    <Build Include="dbo\Tables\Person_Role_Type.sql" />
+    <Build Include="dbo\Tables\Person_Status.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post_Deploy\Script.PostDeployment.sql" />
@@ -86,6 +89,9 @@
     <None Include="Property_Management_SQL.publish.xml" />
     <None Include="Post_Deploy\Iterations\2.0\Insert_Version.sql" />
     <None Include="Post_Deploy\Iterations\5.0\Insert_Version.sql" />
+    <None Include="Post_Deploy\Iterations\6.0\Insert_Version.sql" />
+    <None Include="Post_Deploy\Iterations\6.0\Insert_person_role_type.sql" />
+    <None Include="Post_Deploy\Iterations\6.0\Insert_person_status.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Property_Management_SQL.refactorlog" />
