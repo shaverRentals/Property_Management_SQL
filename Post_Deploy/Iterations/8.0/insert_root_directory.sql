@@ -15,7 +15,7 @@ VALUES
 )
 ,
 (
- 'Lease_Folder_Name'
+ 'Default_Folder'
  ,'Leases'
  ,'Name used for lease folder in the root directory'
 )
