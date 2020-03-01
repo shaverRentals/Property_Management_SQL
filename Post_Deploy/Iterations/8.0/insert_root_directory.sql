@@ -1,4 +1,4 @@
-﻿DELETE FROM SETTINGS WHERE SETTING IN('Root_Directory','Lease_Folder_Name')
+﻿DELETE FROM SETTINGS WHERE SETTING IN('Root_Directory','Default_Folder')
 ;
 
 INSERT INTO Settings
@@ -19,4 +19,23 @@ VALUES
  ,'Leases'
  ,'Name used for lease folder in the root directory'
 )
+,
+(
+ 'Default_Folder'
+ ,'Docs'
+ ,'Name used for Docs folder in the root directory'
+)
+,
+(
+ 'Default_Folder'
+ ,'Expenses'
+ ,'Name used for Expenses folder in the root directory'
+)
+,
+(
+ 'Default_Folder'
+ ,'Income'
+ ,'Name used for Income folder in the root directory'
+)
+;
 ;
