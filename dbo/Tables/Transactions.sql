@@ -4,7 +4,6 @@
 [Property_Unit_ID] INT NULL,
 [Lease_ID] INT NULL,
 [Person_ID] INT NULL,
-[Transaction_Type_ID] INT NULL, 
 [Transaction_Category_ID] INT NOT NULL,
 [Transaction_Amount] MONEY NULL, 
 [Transaction_Date] DATE NULL, 
