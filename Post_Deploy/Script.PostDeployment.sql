@@ -8,6 +8,9 @@
 --:r .\iterations\7.0\insert_Version.sql
 
 --8.0
-:r .\iterations\8.0\insert_Version.sql
-:r .\iterations\8.0\insert_root_directory.sql
-:r .\iterations\8.0\modify-property-descriptons.sql
+--:r .\iterations\8.0\insert_Version.sql
+--:r .\iterations\8.0\insert_root_directory.sql
+--:r .\iterations\8.0\modify-property-descriptons.sql
+
+--9.0
+--:r .\iterations\8.0\insert_Version.sql
