@@ -9,5 +9,6 @@
 [Transaction_Date] DATE NULL, 
 [Transaction_File_Path] VARCHAR(MAX) NULL, 
 [Transaction_Notes] VARCHAR(MAX) NULL, 
-CONSTRAINT [FK_Transactions_ToTransactionCategory] FOREIGN KEY ([Transaction_Category_ID]) REFERENCES [Transaction_Category]([Transaction_Category_ID]) 
+[From_Security_Deposit] BIT NULL, 
+    CONSTRAINT [FK_Transactions_ToTransactionCategory] FOREIGN KEY ([Transaction_Category_ID]) REFERENCES [Transaction_Category]([Transaction_Category_ID]) 
 )
