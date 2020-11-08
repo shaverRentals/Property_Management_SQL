@@ -15,3 +15,4 @@
 --9.0
 :r .\iterations\9.0\insert_Version.sql
 :r .\iterations\9.0\insert_transaction_types.sql
+:r .\iterations\9.0\insert_transaction_categories.sql
