@@ -13,4 +13,5 @@
 --:r .\iterations\8.0\modify-property-descriptons.sql
 
 --9.0
---:r .\iterations\8.0\insert_Version.sql
+:r .\iterations\9.0\insert_Version.sql
+:r .\iterations\9.0\insert_transaction_types.sql
