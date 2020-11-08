@@ -7,6 +7,7 @@
 [Transaction_Category_ID] INT NOT NULL,
 [Transaction_Amount] MONEY NULL, 
 [Transaction_Date] DATE NULL, 
-    CONSTRAINT [FK_Transactions_ToTransition_Type] FOREIGN KEY ([Transaction_Type_ID]) REFERENCES [Transaction_Type]([Transaction_Type_ID])
-
+[Transaction_File_Path] VARCHAR(MAX) NULL, 
+[Transaction_Notes] VARCHAR(MAX) NULL, 
+CONSTRAINT [FK_Transactions_ToTransactionCategory] FOREIGN KEY ([Transaction_Category_ID]) REFERENCES [Transaction_Category]([Transaction_Category_ID]) 
 )
