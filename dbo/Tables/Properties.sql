@@ -11,6 +11,7 @@
     [Seller]            VARCHAR (50) NULL,
     [Property_Primary_Image] IMAGE NULL, 
     [Property_Notes] VARCHAR(MAX) NULL, 
+    [Is_Active] TINYINT NULL, 
     CONSTRAINT [PK_Properties] PRIMARY KEY CLUSTERED ([Property_ID] ASC),
     CONSTRAINT [FK_Properties_Property_Owner] FOREIGN KEY ([Property_Owner_ID]) REFERENCES [dbo].[Property_Owner] ([Property_Owner_ID])
 );
