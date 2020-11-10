@@ -10,5 +10,7 @@
 [Transaction_File_Path] VARCHAR(MAX) NULL, 
 [Transaction_Notes] VARCHAR(MAX) NULL, 
 [From_Security_Deposit] BIT NULL, 
+    [Service_Begin_Date] DATE NULL, 
+    [Service_End_Date] DATE NULL, 
     CONSTRAINT [FK_Transactions_ToTransactionCategory] FOREIGN KEY ([Transaction_Category_ID]) REFERENCES [Transaction_Category]([Transaction_Category_ID]) 
 )
