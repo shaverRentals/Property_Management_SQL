@@ -51,7 +51,17 @@ VALUES
 ,
 (
 2
-,'Utilities'
+,'Utilities City'
+)
+,
+(
+2
+,'Utilities Power'
+)
+,
+(
+2
+,'Utilities Gas'
 )
 ,
 (
