@@ -7,6 +7,7 @@
     [Share_Electricity]     FLOAT (53)   NULL,
     [Share_Gas]             FLOAT (53)   NULL,
     [Property_Description] VARCHAR(50) NULL, 
+    [Is_Active] TINYINT NULL, 
     CONSTRAINT [PK_Property_Units] PRIMARY KEY CLUSTERED ([Property_Unit_ID] ASC),
     CONSTRAINT [FK_Property_Units_Properties] FOREIGN KEY ([Property_ID]) REFERENCES [dbo].[Properties] ([Property_ID])
 );

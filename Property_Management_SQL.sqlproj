@@ -69,6 +69,7 @@
     <Folder Include="Post_Deploy\Iterations\6.0" />
     <Folder Include="Post_Deploy\Iterations\7.0" />
     <Folder Include="Post_Deploy\Iterations\8.0" />
+    <Folder Include="Post_Deploy\Iterations\9.0" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Properties.sql" />
@@ -85,6 +86,9 @@
     <Build Include="dbo\Tables\Person_Status.sql" />
     <Build Include="dbo\Stored_Procedures\Insert_Image_Person.sql" />
     <Build Include="dbo\Tables\Settings.sql" />
+    <Build Include="dbo\Tables\Transactions.sql" />
+    <Build Include="dbo\Tables\Transaction_Type.sql" />
+    <Build Include="dbo\Tables\Transaction_Category.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post_Deploy\Script.PostDeployment.sql" />
@@ -100,6 +104,10 @@
     <None Include="Post_Deploy\Iterations\8.0\Insert_Version.sql" />
     <None Include="Post_Deploy\Iterations\8.0\insert_root_directory.sql" />
     <None Include="Post_Deploy\Iterations\8.0\modify-property-descriptons.sql" />
+    <None Include="Post_Deploy\Iterations\9.0\Insert_Version.sql" />
+    <None Include="Post_Deploy\Iterations\9.0\insert_transaction_types.sql" />
+    <None Include="Post_Deploy\Iterations\9.0\insert_transaction_categories.sql" />
+    <None Include="Post_Deploy\Iterations\9.0\updates-lease-description.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Property_Management_SQL.refactorlog" />
