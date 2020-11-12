@@ -19,4 +19,4 @@
 --:r .\iterations\9.0\updates-lease-description.sql
 
 --10.0
-:r .\iterations\10.0\
+:r .\iterations\10.0\insert_version.sql
