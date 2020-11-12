@@ -70,6 +70,7 @@
     <Folder Include="Post_Deploy\Iterations\7.0" />
     <Folder Include="Post_Deploy\Iterations\8.0" />
     <Folder Include="Post_Deploy\Iterations\9.0" />
+    <Folder Include="Post_Deploy\Iterations\10.0" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Properties.sql" />
