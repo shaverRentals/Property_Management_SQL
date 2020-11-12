@@ -6,6 +6,7 @@
 [Lease_ID] INT NULL,
 [Person_ID] INT NULL,
 [Transaction_Category_ID] INT NOT NULL,
+[Transaction_Distribution_ID] INT NOT NULL,
 [Transaction_Amount] MONEY NULL, 
 [Transaction_Date] DATE NULL DEFAULT GetDate(), 
 [Transaction_File_Path] VARCHAR(MAX) NULL, 
@@ -14,4 +15,6 @@
 [Service_Begin_Date] DATE NULL DEFAULT GetDate(), 
 [Service_End_Date] DATE NULL DEFAULT GetDate(), 
     CONSTRAINT [FK_Transactions_ToTransactionCategory] FOREIGN KEY ([Transaction_Category_ID]) REFERENCES [Transaction_Category]([Transaction_Category_ID]) 
+    ,
+    CONSTRAINT [FK_Transactions_ToTransactionDistributionType] FOREIGN KEY ([Transaction_Distribution_ID]) REFERENCES [Transaction_Distribution_Type]([Transaction_Distribution_ID]) 
 )
