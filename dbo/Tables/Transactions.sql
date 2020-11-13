@@ -3,7 +3,6 @@
 [Transaction_ID] INT NOT NULL PRIMARY KEY IDENTITY,
 [Property_ID] INT NULL,
 [Property_Unit_ID] INT NULL,
-[Lease_ID] INT NULL,
 [Person_ID] INT NULL,
 [Transaction_Category_ID] INT NOT NULL,
 [Transaction_Distribution_ID] INT NOT NULL,
