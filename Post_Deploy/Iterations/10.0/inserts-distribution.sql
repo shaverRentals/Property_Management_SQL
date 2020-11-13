@@ -6,15 +6,7 @@ INSERT INTO Transaction_Distribution_Type
 )
 VALUES
 (
- 'Unit Only'
-)
-,
-(
- 'Property Only'
-)
-,
-(
- 'All Properties'
+ 'Property/Unit'
 )
 ,
 (
@@ -22,6 +14,6 @@ VALUES
 )
 ,
 (
- 'Income'
+ 'All Properties'
 )
 ;
