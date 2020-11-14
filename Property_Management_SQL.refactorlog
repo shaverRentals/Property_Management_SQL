@@ -133,4 +133,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Lease_Description" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="b6ec6321-fc7c-496f-984d-92339cbb5e0d" ChangeDateTime="11/12/2020 18:56:13">
+    <Property Name="ElementName" Value="[dbo].[Transaction_Distribution_Type].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Transaction_Distribution_Type]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Transaction_Distribution_ID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2077412f-2193-4838-8256-46f646f185ff" ChangeDateTime="11/12/2020 20:12:48">
+    <Property Name="ElementName" Value="[dbo].[Transaction_Distribution_Type].[Transaction_Distribuition_Type]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Transaction_Distribution_Type]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Transaction_Distribution_Type" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9d396510-e0e1-4528-aa68-0152a1c643da" ChangeDateTime="11/13/2020 17:24:37">
+    <Property Name="ElementName" Value="[dbo].[Transaction_Distributions].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Transaction_Distributions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Transaction_Distribution_ID" />
+  </Operation>
 </Operations>

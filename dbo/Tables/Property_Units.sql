@@ -6,6 +6,7 @@
     [Share_City]            FLOAT (53)   NULL,
     [Share_Electricity]     FLOAT (53)   NULL,
     [Share_Gas]             FLOAT (53)   NULL,
+    [Transaction_Distribution_Proportion]   FLOAT (53)   NULL,
     [Property_Description] VARCHAR(50) NULL, 
     [Is_Active] TINYINT NULL, 
     CONSTRAINT [PK_Property_Units] PRIMARY KEY CLUSTERED ([Property_Unit_ID] ASC),
