@@ -9,6 +9,9 @@
     [Property_Unit_ID] INT NULL,
     [Transaction_Amount] MONEY NULL, 
     [Transaction_Distributed_Amount] MONEY NULL, 
+    [Transaction_Date] DATE NULL,
+    [Service_Begin_Date] DATE NULL, 
+    [Service_End_Date] DATE NULL, 
     [Transaction_Distribution_Payment_Month] INT NULL, 
     [Transaction_Distribution_Service _Begin_Month] INT NULL,
     [Transaction_Distribution_Service _End_Month] INT NULL
