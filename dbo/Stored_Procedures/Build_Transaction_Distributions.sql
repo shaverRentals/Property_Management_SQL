@@ -1,15 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[Build_Transaction_Distributions]
 
-AS
-
-USE [Property_Management]
-GO
-/****** Object:  StoredProcedure [dbo].[Build_Transaction_Distributions]    Script Date: 11/14/2020 1:13:23 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-ALTER PROCEDURE [dbo].[Build_Transaction_Distributions]
 
 AS
 
