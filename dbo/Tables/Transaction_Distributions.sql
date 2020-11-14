@@ -13,6 +13,6 @@
     [Service_Begin_Date] DATE NULL, 
     [Service_End_Date] DATE NULL, 
     [Transaction_Distribution_Payment_Month] INT NULL, 
-    [Transaction_Distribution_Service _Begin_Month] INT NULL,
-    [Transaction_Distribution_Service _End_Month] INT NULL
+    [Transaction_Distribution_Service_Begin_Month] INT NULL,
+    [Transaction_Distribution_Service_End_Month] INT NULL
 )

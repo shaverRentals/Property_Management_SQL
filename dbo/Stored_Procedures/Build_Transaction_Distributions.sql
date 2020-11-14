@@ -2,6 +2,17 @@
 
 AS
 
+USE [Property_Management]
+GO
+/****** Object:  StoredProcedure [dbo].[Build_Transaction_Distributions]    Script Date: 11/14/2020 1:13:23 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[Build_Transaction_Distributions]
+
+AS
+
 TRUNCATE TABLE Transaction_Distributions
 ;
 
@@ -18,7 +29,10 @@ CREATE TABLE #Transaction_Distributions
     [Transaction_Distribution_Type] VARCHAR(50) NULL,
 	[Transaction_Type] Varchar(50) NULL,
     [Transaction_Amount] MONEY NULL, 
-    [Transaction_Distributed_Amount] MONEY NULL
+    [Transaction_Distributed_Amount] MONEY NULL,
+	[Transaction_Date] DATE NULL,
+    [Service_Begin_Date] DATE NULL, 
+    [Service_End_Date] DATE NULL,
 )
 
 INSERT INTO #Transaction_Distributions
@@ -32,6 +46,9 @@ INSERT INTO #Transaction_Distributions
 	 ,Transaction_Distribution_Type
 	 ,Transaction_Type
      ,Transaction_Amount
+	 ,Transaction_Date
+	 ,Service_Begin_Date
+	 ,Service_End_Date
 	)
 SELECT
      Transaction_ID
@@ -42,7 +59,10 @@ SELECT
      ,T.Transaction_Distribution_ID
 	 ,TDT.Transaction_Distribution_Type
 	 ,TT.Transaction_Type
-     ,Transaction_Amount
+     ,T.Transaction_Amount
+	 ,T.Transaction_Date
+	 ,T.Service_Begin_Date
+	 ,T.Service_End_Date
 FROM Transactions T
 INNER JOIN Transaction_Category TC ON
 TC.Transaction_Category_ID = T.Transaction_Category_ID
@@ -61,6 +81,9 @@ INSERT INTO Transaction_Distributions
      ,Property_Unit_ID
      ,Transaction_Amount
      ,Transaction_Distributed_Amount
+	 ,Transaction_Date
+	 ,Service_Begin_Date
+	 ,Service_End_Date
 )
 SELECT
 	Transaction_ID
@@ -70,6 +93,9 @@ SELECT
     ,Property_Unit_ID
     ,Transaction_Amount
     ,Transaction_Amount
+	,Transaction_Date
+	,Service_Begin_Date
+	,Service_End_Date
 FROM Transactions
 WHERE Transaction_Distribution_ID = 6
 ;
@@ -86,6 +112,9 @@ INSERT INTO Transaction_Distributions
      ,Property_Unit_ID
      ,Transaction_Amount
      ,Transaction_Distributed_Amount
+	 ,Transaction_Date
+	 ,Service_Begin_Date
+	 ,Service_End_Date
 	)
 	SELECT distinct
 	 TD.Transaction_ID
@@ -95,6 +124,9 @@ INSERT INTO Transaction_Distributions
 	 ,PU.Property_Unit_ID
 	 ,TD.Transaction_Amount
 	 ,(Transaction_Amount * Share_Gas) 
+	 ,Transaction_Date
+	 ,Service_Begin_Date
+	 ,Service_End_Date
 	FROM #Transaction_Distributions TD
 	INNER JOIN Properties P ON
 	P.Property_ID = TD.Property_ID
@@ -113,6 +145,9 @@ INSERT INTO Transaction_Distributions
      ,Property_Unit_ID
      ,Transaction_Amount
      ,Transaction_Distributed_Amount
+	 ,Transaction_Date
+	 ,Service_Begin_Date
+	 ,Service_End_Date
 	)
 	SELECT distinct
 	 TD.Transaction_ID
@@ -122,6 +157,9 @@ INSERT INTO Transaction_Distributions
 	 ,PU.Property_Unit_ID
 	 ,TD.Transaction_Amount
 	 ,(Transaction_Amount * Share_City) 
+	 ,Transaction_Date
+	 ,Service_Begin_Date
+	 ,Service_End_Date
 	FROM #Transaction_Distributions TD
 	INNER JOIN Properties P ON
 	P.Property_ID = TD.Property_ID
@@ -140,6 +178,9 @@ INSERT INTO Transaction_Distributions
      ,Property_Unit_ID
      ,Transaction_Amount
      ,Transaction_Distributed_Amount
+	 ,Transaction_Date
+	 ,Service_Begin_Date
+	 ,Service_End_Date
 	)
 	SELECT distinct
 	 TD.Transaction_ID
@@ -149,6 +190,9 @@ INSERT INTO Transaction_Distributions
 	 ,PU.Property_Unit_ID
 	 ,TD.Transaction_Amount
 	 ,(Transaction_Amount * Share_Electricity) 
+	 ,Transaction_Date
+	 ,Service_Begin_Date
+	 ,Service_End_Date
 	FROM #Transaction_Distributions TD
 	INNER JOIN Properties P ON
 	P.Property_ID = TD.Property_ID
@@ -167,6 +211,9 @@ INSERT INTO Transaction_Distributions
      ,Property_Unit_ID
      ,Transaction_Amount
      ,Transaction_Distributed_Amount
+	 ,Transaction_Date
+	 ,Service_Begin_Date
+	 ,Service_End_Date
 	)
 	SELECT distinct
 	 TD.Transaction_ID
@@ -176,6 +223,9 @@ INSERT INTO Transaction_Distributions
 	 ,PU.Property_Unit_ID
 	 ,TD.Transaction_Amount
 	 ,(Transaction_Amount * Transaction_Distribution_Proportion) 
+	 ,Transaction_Date
+	 ,Service_Begin_Date
+	 ,Service_End_Date
 	FROM #Transaction_Distributions TD
 	INNER JOIN Properties P ON
 	P.Property_ID = TD.Property_ID
@@ -208,6 +258,9 @@ INSERT INTO Transaction_Distributions
     ,Property_Unit_ID
     ,Transaction_Amount
     ,Transaction_Distributed_Amount
+	,Transaction_Date
+	,Service_Begin_Date
+	,Service_End_Date
 	)
 SELECT DISTINCT
 Transaction_ID 
@@ -217,6 +270,9 @@ Transaction_ID
 ,NULL
 ,Transaction_Amount
 ,(Transaction_Amount/@Number_Properties) 
+ ,Transaction_Date
+,Service_Begin_Date
+,Service_End_Date
 FROM Transactions 
 CROSS JOIN Properties P 
 where Transaction_Distribution_ID = 8
@@ -267,7 +323,15 @@ FROM Transaction_Distributions TD
 INNER JOIN Lease L ON
 L.Transaction_Distribution_ID = TD.Transaction_Distribution_ID
 ;
-
+UPDATE Transaction_Distributions
+SET Transaction_Distribution_Payment_Month = LEFT(CONVERT(varchar(8),Transaction_Date,112),6)
+;
+UPDATE Transaction_Distributions
+SET [Transaction_Distribution_Service_Begin_Month] = LEFT(CONVERT(varchar(8),Service_Begin_Date,112),6)
+;
+UPDATE Transaction_Distributions
+SET [Transaction_Distribution_Service_End_Month] = LEFT(CONVERT(varchar(8),Service_Begin_Date,112),6)
+;
 DROP TABLE #Transaction_Distributions
 ;
 
