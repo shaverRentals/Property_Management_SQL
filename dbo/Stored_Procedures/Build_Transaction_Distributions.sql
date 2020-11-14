@@ -1,7 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[Build_Transaction_Distributions]
 
 AS
-	TRUNCATE TABLE Transaction_Distributions
+
+TRUNCATE TABLE Transaction_Distributions
 ;
 
 CREATE TABLE #Transaction_Distributions
@@ -74,6 +75,89 @@ WHERE Transaction_Distribution_ID = 6
 ;
 
 --Divided Units
+
+--Gas
+INSERT INTO Transaction_Distributions
+	(
+	 Transaction_ID
+     ,Transaction_Category_ID
+     ,Transaction_Distribution_Type_ID
+     ,Property_ID
+     ,Property_Unit_ID
+     ,Transaction_Amount
+     ,Transaction_Distributed_Amount
+	)
+	SELECT distinct
+	 TD.Transaction_ID
+	 ,TD.Transaction_Category_ID
+	 ,TD.Transaction_Distribution_Type_ID
+	 ,P.Property_ID
+	 ,PU.Property_Unit_ID
+	 ,TD.Transaction_Amount
+	 ,(Transaction_Amount * Share_Gas) 
+	FROM #Transaction_Distributions TD
+	INNER JOIN Properties P ON
+	P.Property_ID = TD.Property_ID
+	INNER JOIN Property_Units PU ON
+	PU.Property_ID = P.Property_ID
+	WHERE TD.Transaction_Distribution_Type_ID = 7
+	AND Transaction_Category_ID = 12
+	;
+--City
+INSERT INTO Transaction_Distributions
+	(
+	 Transaction_ID
+     ,Transaction_Category_ID
+     ,Transaction_Distribution_Type_ID
+     ,Property_ID
+     ,Property_Unit_ID
+     ,Transaction_Amount
+     ,Transaction_Distributed_Amount
+	)
+	SELECT distinct
+	 TD.Transaction_ID
+	 ,TD.Transaction_Category_ID
+	 ,TD.Transaction_Distribution_Type_ID
+	 ,P.Property_ID
+	 ,PU.Property_Unit_ID
+	 ,TD.Transaction_Amount
+	 ,(Transaction_Amount * Share_City) 
+	FROM #Transaction_Distributions TD
+	INNER JOIN Properties P ON
+	P.Property_ID = TD.Property_ID
+	INNER JOIN Property_Units PU ON
+	PU.Property_ID = P.Property_ID
+	WHERE TD.Transaction_Distribution_Type_ID = 7
+	AND Transaction_Category_ID = 10
+	;
+--Electric
+INSERT INTO Transaction_Distributions
+	(
+	 Transaction_ID
+     ,Transaction_Category_ID
+     ,Transaction_Distribution_Type_ID
+     ,Property_ID
+     ,Property_Unit_ID
+     ,Transaction_Amount
+     ,Transaction_Distributed_Amount
+	)
+	SELECT distinct
+	 TD.Transaction_ID
+	 ,TD.Transaction_Category_ID
+	 ,TD.Transaction_Distribution_Type_ID
+	 ,P.Property_ID
+	 ,PU.Property_Unit_ID
+	 ,TD.Transaction_Amount
+	 ,(Transaction_Amount * Share_Electricity) 
+	FROM #Transaction_Distributions TD
+	INNER JOIN Properties P ON
+	P.Property_ID = TD.Property_ID
+	INNER JOIN Property_Units PU ON
+	PU.Property_ID = P.Property_ID
+	WHERE TD.Transaction_Distribution_Type_ID = 7
+	AND Transaction_Category_ID = 11
+	;
+--General
 INSERT INTO Transaction_Distributions
 	(
 	 Transaction_ID
@@ -98,44 +182,46 @@ INSERT INTO Transaction_Distributions
 	INNER JOIN Property_Units PU ON
 	PU.Property_ID = P.Property_ID
 	WHERE TD.Transaction_Distribution_Type_ID = 7
+	AND Transaction_Category_ID NOT IN(10,11,12)
 	;
 
-	--Update property unit ID for single unit/property transactions
-	UPDATE Transaction_Distributions
-	SET Property_Unit_ID = PU.Property_Unit_ID
-	FROM Transaction_Distributions TD
-	INNER JOIN Property_Units PU ON
-	PU.Property_ID = TD.Property_ID
-	WHERE Transaction_Distribution_Type_ID = 6
-	and TD.Property_unit_ID IS NULL
-	;
 
-	--All properties
-	DECLARE @Number_Properties INT = (SELECT COUNT (Property_ID) FROM Properties where Is_Active = 1)
-	;
-	INSERT INTO Transaction_Distributions
-	(
-	 Transaction_ID
-     ,Transaction_Category_ID
-     ,Transaction_Distribution_Type_ID
-     ,Property_ID
-     ,Property_Unit_ID
-     ,Transaction_Amount
-     ,Transaction_Distributed_Amount
-	 )
-	SELECT DISTINCT
-	Transaction_ID 
-	,Transaction_Category_ID
-	,Transaction_Distribution_ID
-	,P.Property_ID
-	,NULL
-	,Transaction_Amount
-	,(Transaction_Amount/@Number_Properties) 
-	FROM Transactions 
-	CROSS JOIN Properties P 
-	where Transaction_Distribution_ID = 8
-	and Is_Active =1
-	;
+--Update property unit ID for single unit/property transactions
+UPDATE Transaction_Distributions
+SET Property_Unit_ID = PU.Property_Unit_ID
+FROM Transaction_Distributions TD
+INNER JOIN Property_Units PU ON
+PU.Property_ID = TD.Property_ID
+WHERE Transaction_Distribution_Type_ID = 6
+and TD.Property_unit_ID IS NULL
+;
+
+--All properties
+DECLARE @Number_Properties INT = (SELECT COUNT (Property_ID) FROM Properties where Is_Active = 1)
+;
+INSERT INTO Transaction_Distributions
+(
+	Transaction_ID
+    ,Transaction_Category_ID
+    ,Transaction_Distribution_Type_ID
+    ,Property_ID
+    ,Property_Unit_ID
+    ,Transaction_Amount
+    ,Transaction_Distributed_Amount
+	)
+SELECT DISTINCT
+Transaction_ID 
+,Transaction_Category_ID
+,Transaction_Distribution_ID
+,P.Property_ID
+,NULL
+,Transaction_Amount
+,(Transaction_Amount/@Number_Properties) 
+FROM Transactions 
+CROSS JOIN Properties P 
+where Transaction_Distribution_ID = 8
+and Is_Active =1
+;
 
 --Get Lease ID
 WITH Lease AS
