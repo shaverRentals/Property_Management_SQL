@@ -26,4 +26,4 @@
 --:r .\iterations\10.0\clean-up-test-data.sql
 
 --11.0
-:r .\iterations\11.0\insert-version.sql
+:r .\iterations\11.0\insert_version.sql
