@@ -19,8 +19,11 @@
 --:r .\iterations\9.0\updates-lease-description.sql
 
 --10.0
-:r .\iterations\10.0\insert-version.sql
---:r .\iterations\10.0\inserts-distribution.sql
-:r .\iterations\10.0\update-distribution-proportion.sql
-:r .\iterations\10.0\clean-up-person-role-add-vendor.sql
-:r .\iterations\10.0\clean-up-test-data.sql
+--:r .\iterations\10.0\insert-version.sql
+----:r .\iterations\10.0\inserts-distribution.sql
+--:r .\iterations\10.0\update-distribution-proportion.sql
+--:r .\iterations\10.0\clean-up-person-role-add-vendor.sql
+--:r .\iterations\10.0\clean-up-test-data.sql
+
+--11.0
+:r .\iterations\11.0\insert-version.sql
