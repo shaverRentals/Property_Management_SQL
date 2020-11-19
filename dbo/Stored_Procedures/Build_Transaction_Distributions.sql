@@ -269,44 +269,44 @@ where Transaction_Distribution_ID = 8
 and Is_Active =1
 ;
 
---Get Lease ID
-WITH Lease AS
-(
- SELECT DISTINCT
-  T.Transaction_ID
-  ,TD.Transaction_Distribution_ID
-  ,T.Transaction_Amount
-  ,T.Service_Begin_Date
-  ,T.Service_End_Date
-  ,T.Transaction_Date
-  ,L.Lease_ID
-  ,L.Lease_Begin_Date
-  ,L.Lease_End_Date
- FROM Transaction_Distributions TD
- INNER JOIN Transactions T ON
- T.Transaction_ID = TD.Transaction_ID
- INNER JOIN Leases L ON
- L.Property_Unit_ID = TD.Property_Unit_ID
- where T.Transaction_Date BETWEEN Lease_Begin_Date AND Lease_End_Date
- UNION
- SELECT DISTINCT
-  T.Transaction_ID
-  ,TD.Transaction_Distribution_ID
-  ,T.Transaction_Amount
-  ,T.Service_Begin_Date
-  ,T.Service_End_Date
-  ,T.Transaction_Date
-  ,L.Lease_ID
-  ,L.Lease_Begin_Date
-  ,L.Lease_End_Date
- FROM Transaction_Distributions TD
- INNER JOIN Transactions T ON
- T.Transaction_ID = TD.Transaction_ID
- INNER JOIN Leases L ON
- L.Property_Unit_ID = TD.Property_Unit_ID
- where Lease_End_Date >= T.Service_Begin_Date
- AND Lease_Begin_Date < = T.Service_End_Date
-)
+----Get Lease ID
+--WITH Lease AS
+--(
+-- SELECT DISTINCT
+--  T.Transaction_ID
+--  ,TD.Transaction_Distribution_ID
+--  ,T.Transaction_Amount
+--  ,T.Service_Begin_Date
+--  ,T.Service_End_Date
+--  ,T.Transaction_Date
+--  ,L.Lease_ID
+--  ,L.Lease_Begin_Date
+--  ,L.Lease_End_Date
+-- FROM Transaction_Distributions TD
+-- INNER JOIN Transactions T ON
+-- T.Transaction_ID = TD.Transaction_ID
+-- INNER JOIN Leases L ON
+-- L.Property_Unit_ID = TD.Property_Unit_ID
+-- where T.Transaction_Date BETWEEN Lease_Begin_Date AND Lease_End_Date
+-- UNION
+-- SELECT DISTINCT
+--  T.Transaction_ID
+--  ,TD.Transaction_Distribution_ID
+--  ,T.Transaction_Amount
+--  ,T.Service_Begin_Date
+--  ,T.Service_End_Date
+--  ,T.Transaction_Date
+--  ,L.Lease_ID
+--  ,L.Lease_Begin_Date
+--  ,L.Lease_End_Date
+-- FROM Transaction_Distributions TD
+-- INNER JOIN Transactions T ON
+-- T.Transaction_ID = TD.Transaction_ID
+-- INNER JOIN Leases L ON
+-- L.Property_Unit_ID = TD.Property_Unit_ID
+-- where Lease_End_Date >= T.Service_Begin_Date
+-- AND Lease_Begin_Date < = T.Service_End_Date
+--)
 UPDATE Transaction_Distributions
 SET Lease_ID = L.Lease_ID
 FROM Transaction_Distributions TD

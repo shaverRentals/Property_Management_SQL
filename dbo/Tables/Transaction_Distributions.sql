@@ -17,6 +17,12 @@
     [Transaction_Distribution_Payment_Month] INT NULL, 
     [Transaction_Distribution_Service_Begin_Month] INT NULL,
     [Transaction_Distribution_Service_End_Month] INT NULL,
+    [Utility_Payment] Money NULL,
+    [Days_Service_Period] INT NULL,
+    [Payment_Days_Service_Period] INT NULL,
+    [Partial_Service_Period] INT NULL,
+    [Utility_Payment_Per_Day] Money NULL,
+    [Adjusted_Utility_Payment] Money NULL,
     [Recon_Flag] tinyint NULL
 )
 ;
