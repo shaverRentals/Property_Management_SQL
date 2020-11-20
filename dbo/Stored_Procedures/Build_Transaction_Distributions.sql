@@ -348,6 +348,11 @@ set Adjusted_Utility_Payment = CASE WHEN Transaction_Category_ID = 17 AND Utilit
 WHERE Recon_Flag = 1
 and Partial_Service_Period IS NULL
 ;
+Update Transaction_Distributions
+SET Recon_Flag = 0
+where Recon_Flag IS NULL
+;
+
 --Pivot recon data
 TRUNCATE TABLE Recon_Pivot
 ;
