@@ -269,6 +269,15 @@ where Transaction_Distribution_ID = 8
 and Is_Active = 1
 ;
 
+UPDATE Transaction_Distributions
+SET Transaction_Distribution_Payment_Month = LEFT(CONVERT(varchar(8),Transaction_Date,112),6)
+;
+UPDATE Transaction_Distributions
+SET [Transaction_Distribution_Service_Begin_Month] = LEFT(CONVERT(varchar(8),Service_Begin_Date,112),6)
+;
+UPDATE Transaction_Distributions
+SET [Transaction_Distribution_Service_End_Month] = LEFT(CONVERT(varchar(8),Service_Begin_Date,112),6)
+;
 
 --Reconcilliations
 
@@ -338,4 +347,71 @@ update Transaction_Distributions
 set Adjusted_Utility_Payment = CASE WHEN Transaction_Category_ID = 17 AND Utility_Payment IS NOT NULL THEN Utility_Payment ELSE Transaction_Distributed_Amount END
 WHERE Recon_Flag = 1
 and Partial_Service_Period IS NULL
+;
+--Pivot recon data
+TRUNCATE TABLE Recon_Pivot
+;
+INSERT INTO Recon_Pivot
+(
+ [Lease_ID]
+ ,[Lease_Description]
+ ,Lease_Begin_Date
+ ,Lease_End_Date
+ ,[Transaction_Date]
+ ,Transaction_Distribution_Payment_Month
+ ,[Utilities_Paid]
+ ,[City]
+ ,[Power]
+ ,[Gas]
+)
+SELECT DISTINCT
+ Lease_ID
+ ,Lease_Description
+  ,Lease_Begin_Date
+ ,Lease_End_Date
+ ,Transaction_Date 
+ ,Transaction_Distribution_Payment_Month
+ ,[Rent]
+ ,[Utilities City]
+ ,[Utilities Power]
+ ,[Utilities Gas]
+
+FROM (SELECT 
+	  Lease_Description
+	  ,TD.Lease_ID
+	  ,Transaction_Date
+	  ,Transaction_Distribution_Payment_Month
+	  ,Adjusted_Utility_Payment
+	  ,TD.Transaction_Category_ID
+	  ,TC.Transaction_Category
+	  ,L.Lease_Begin_Date
+	  ,L.Lease_End_Date
+	  FROM Transaction_Distributions
+	  TD INNER JOIN
+	  Leases L 
+	  ON TD.Lease_ID = L.Lease_ID
+	  INNER JOIN Transaction_Category TC ON
+	  TC.Transaction_Category_ID = TD.Transaction_Category_ID
+	  WHERE Recon_Flag = 1 and L.Lease_ID = 47) a
+PIVOT( MAX(Adjusted_Utility_Payment)
+FOR Transaction_Category IN([Rent],[Utilities City],[Utilities Power],[Utilities Gas])
+) AS P 
+UPDATE Recon_Pivot
+SET City = 0 where city IS NULL
+;
+UPDATE Recon_Pivot
+SET [Power] = 0 where [Power]IS NULL
+;
+UPDATE Recon_Pivot
+SET gas = 0 where gas IS NULL
+;
+UPDATE Recon_Pivot
+SET Utilities_Paid  = 0
+WHERE Utilities_Paid IS NULL
+;
+UPDATE Recon_Pivot
+SET Total_Utilites  = [POWER] + Gas + City
+;
+UPDATE Recon_Pivot
+SET Difference = (Utilities_Paid -Total_Utilites)
 ;

@@ -96,6 +96,7 @@
     <Build Include="dbo\Tables\Transaction_Distributions.sql" />
     <Build Include="dbo\Stored_Procedures\Build_Transaction_Distributions.sql" />
     <Build Include="dbo\Views\Reconcilliations.sql" />
+    <Build Include="dbo\Tables\Recon_Pivot.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post_Deploy\Script.PostDeployment.sql" />
