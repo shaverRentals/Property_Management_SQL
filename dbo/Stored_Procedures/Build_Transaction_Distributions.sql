@@ -397,7 +397,7 @@ FROM (SELECT
 	  ON TD.Lease_ID = L.Lease_ID
 	  INNER JOIN Transaction_Category TC ON
 	  TC.Transaction_Category_ID = TD.Transaction_Category_ID
-	  WHERE Recon_Flag = 1 and L.Lease_ID = 47) a
+	  WHERE Recon_Flag = 1) a
 PIVOT( MAX(Adjusted_Utility_Payment)
 FOR Transaction_Category IN([Rent],[Utilities City],[Utilities Power],[Utilities Gas])
 ) AS P 
