@@ -1,5 +1,6 @@
-﻿CREATE VIEW [dbo].[Reconcilliations]
+﻿CREATE VIEW [dbo].[Recon_Source]
 	AS 
+
 
 	
 select Lease_ID
@@ -20,5 +21,3 @@ select Lease_ID
 	   , Transaction_Distribution_Payment_Month
 	    ,Lease_Begin_Date
 	   ,Lease_End_Date
-	   
-	   ;
