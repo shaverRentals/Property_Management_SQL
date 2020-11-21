@@ -295,8 +295,8 @@ WITH Lease AS
  T.Transaction_ID = TD.Transaction_ID
  INNER JOIN Leases L ON
  L.Property_Unit_ID = TD.Property_Unit_ID
- where L.Lease_End_Date >= T.Service_Begin_Date
- AND L.Lease_Begin_Date < = T.Service_End_Date
+ where L.Lease_End_Date > T.Service_Begin_Date
+ AND L.Lease_Begin_Date <  T.Service_End_Date
  AND TD.Transaction_Category_ID IN(12,10,11,17)
 )
 UPDATE Transaction_Distributions
