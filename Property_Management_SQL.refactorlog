@@ -154,4 +154,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Transaction_Distribution_ID" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="79efa09d-4baa-4e6d-804e-2814df191715" ChangeDateTime="11/19/2020 20:44:01">
+    <Property Name="ElementName" Value="[dbo].[Recon_Pivot].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Recon_Pivot]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ID" />
+  </Operation>
 </Operations>
