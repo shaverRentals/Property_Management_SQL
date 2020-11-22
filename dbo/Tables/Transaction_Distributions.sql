@@ -15,6 +15,7 @@
     [Service_Begin_Date] DATE NULL, 
     [Service_End_Date] DATE NULL, 
     [Transaction_Distribution_Payment_Month] INT NULL, 
+    [Transaction_Distribution_Year] INT NULL,
     [Transaction_Distribution_Service_Begin_Month] INT NULL,
     [Transaction_Distribution_Service_End_Month] INT NULL,
     [Utility_Payment] Money NULL,
@@ -24,6 +25,6 @@
     [Utility_Payment_Per_Day] Money NULL,
     [Adjusted_Utility_Payment] Money NULL,
     [Recon_Flag] tinyint NULL, 
-    [Transaction_Distribution_Year] INT NULL
+    [Date_Refreshed] Datetime NULL
 )
 ;
