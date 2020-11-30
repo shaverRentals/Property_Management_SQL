@@ -423,3 +423,6 @@ SET Total_Utilites  = [POWER] + Gas + City
 UPDATE Recon_Pivot
 SET Difference = (Utilities_Paid -Total_Utilites)
 ;
+UPDATE Transaction_Distributions
+SET Date_Refreshed = GETDATE()
+;
