@@ -15,7 +15,7 @@ VALUES
 ,
 (
  'Production_Backup_Retention'
- ,3
+ ,'3'
  ,'The number of production backups to retain'
 )
 ;
