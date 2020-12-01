@@ -1,6 +1,11 @@
 ﻿CREATE PROCEDURE [dbo].[Backup_Production]
-	@param1 int = 0,
-	@param2 int
 AS
-	SELECT @param1, @param2
-RETURN 0
+
+DECLARE @Dir Varchar(2000)
+SET @Dir = (SELECT MAX(Setting_Value) from Settings where Setting = 'Production_Backup_Directory')
+;
+DECLARE @FILENAME Varchar(2000)
+;
+SET @FILENAME = @Dir + 'Property_Management_' + REPLACE (CONVERT(nvarchar(20),GetDate(),120),':','-') + '.bak'
+BACKUP DATABASE Property_Management TO DISK = @FILENAME
+;
