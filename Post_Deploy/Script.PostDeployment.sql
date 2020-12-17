@@ -28,10 +28,14 @@
 ----11.0
 --:r .\iterations\11.0\insert_version.sql
 
---12.0
-:r .\iterations\12.0\insert_version.sql
-:r .\iterations\12.0\re-run-lease-descriptions.sql
+----12.0
+--:r .\iterations\12.0\insert_version.sql
+--:r .\iterations\12.0\re-run-lease-descriptions.sql
 
---12.0
-:r .\iterations\13.0\inserts_version.sql
+----13.0
+--:r .\iterations\13.0\inserts_version.sql
+
+--14.0
+:r .\iterations\14.0\insert_version.sql
+:r .\iterations\14.0\insert_settings.sql
 
