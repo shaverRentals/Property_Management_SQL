@@ -39,3 +39,8 @@
 :r .\iterations\14.0\insert_version.sql
 :r .\iterations\14.0\insert_settings.sql
 
+--15.0
+:r .\iterations\15.0\insert_version.sql
+
+
+
