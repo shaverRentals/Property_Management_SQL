@@ -13,4 +13,5 @@ VALUES (
 	'15.0'
 	,GETDATE()
 	,'Fix transactions filters when updating'
+	)
 ;
