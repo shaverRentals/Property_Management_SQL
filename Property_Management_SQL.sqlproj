@@ -75,7 +75,8 @@
     <Folder Include="Post_Deploy\Iterations\12.0" />
     <Folder Include="Post_Deploy\Iterations\13.0" />
     <Folder Include="Post_Deploy\Iterations\14.0" />
-	<Folder Include="Post_Deploy\Iterations\15.0" />
+    <Folder Include="Post_Deploy\Iterations\15.0" />
+    <Folder Include="Post_Deploy\Iterations\16.0" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Properties.sql" />
@@ -130,7 +131,8 @@
     <None Include="Post_Deploy\Iterations\13.0\inserts_version.sql" />
     <None Include="Post_Deploy\Iterations\14.0\insert_version.sql" />
     <None Include="Post_Deploy\Iterations\14.0\insert_settings.sql" />
-	 <None Include="Post_Deploy\Iterations\15.0\insert_version.sql" />
+    <None Include="Post_Deploy\Iterations\15.0\insert_version.sql" />
+    <None Include="Post_Deploy\Iterations\16.0\Insert_Version.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Property_Management_SQL.refactorlog" />
