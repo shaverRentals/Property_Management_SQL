@@ -12,5 +12,6 @@
     [Power] MONEY NULL, 
     [Gas] MONEY NULL, 
     [Total_Utilites] Money NULL,
-    [Difference] MONEY NULL
+    [Difference] MONEY NULL,
+    [Rent_Partial] MONEY NULL
 )
