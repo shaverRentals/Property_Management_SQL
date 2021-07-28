@@ -42,12 +42,17 @@
 ----15.0
 --:r .\iterations\15.0\insert_version.sql
 
---16.0
-:r .\iterations\16.0\insert_version.sql
+----16.0
+--:r .\iterations\16.0\insert_version.sql
+
+----17.0
+--:r .\iterations\17.0\insert_version.sql
+
+--18.0
+:r .\iterations\18.0\insert_version.sql
 
 
---17.0
-:r .\iterations\17.0\insert_version.sql
+
 
 
 
