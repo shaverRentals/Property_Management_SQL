@@ -1,1 +1,1 @@
-﻿update Transaction_Category set Transaction_Category = 'Rent reduced/Partial' where Transaction_Category_ID = 20
+﻿update Transaction_Category set Transaction_Category = 'Rent Reduced/Partial' where Transaction_Category_ID = 20

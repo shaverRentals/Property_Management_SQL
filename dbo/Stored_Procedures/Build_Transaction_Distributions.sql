@@ -405,7 +405,7 @@ SELECT DISTINCT
  ,Transaction_Date 
  ,Transaction_Distribution_Payment_Month
  ,[Rent]
- ,[Rent--Partial Month]
+ ,[Rent Reduced/Partial]
  ,[Utilities City]
  ,[Utilities Power]
  ,[Utilities Gas]
@@ -428,7 +428,7 @@ FROM (SELECT
 	  TC.Transaction_Category_ID = TD.Transaction_Category_ID
 	  WHERE Recon_Flag = 1) a
 PIVOT( MAX(Adjusted_Utility_Payment)
-FOR Transaction_Category IN([Rent],[Rent--Partial Month],[Utilities City],[Utilities Power],[Utilities Gas])
+FOR Transaction_Category IN([Rent],[Rent Reduced/Partial],[Utilities City],[Utilities Power],[Utilities Gas])
 ) AS P 
 UPDATE Recon_Pivot
 SET City = 0 where city IS NULL
