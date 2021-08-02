@@ -299,8 +299,8 @@ WITH Lease AS
  T.Transaction_ID = TD.Transaction_ID
  INNER JOIN Leases L ON
  L.Property_Unit_ID = TD.Property_Unit_ID
- where L.Lease_End_Date >= T.Service_Begin_Date
- AND L.Lease_Begin_Date <=  T.Service_End_Date
+ where L.Lease_End_Date > T.Service_Begin_Date
+ AND L.Lease_Begin_Date <  T.Service_End_Date
  AND TD.Transaction_Category_ID IN(12,10,11,17,20)
 )
 UPDATE Transaction_Distributions
@@ -355,12 +355,13 @@ select
  ,L.Rent_Payment
  ,L.Utilitity_Payment
  ,TD.Transaction_Distributed_Amount
- ,(Utilitity_Payment /30) * Payment_Days_Service_Period as p
+ --,(Utilitity_Payment /30) * Payment_Days_Service_Period as p
+,(utility_payment/(Rent_Payment + Utilitity_Payment)) * TD.Transaction_Distributed_Amount  as P
 FROM Transaction_Distributions TD
 INNER JOIN Leases L ON
 L.Lease_ID = TD.Lease_ID
 where TD.Transaction_Category_ID = 20
-and Partial_Service_Period = 2
+--and Partial_Service_Period = 2
 )
 UPDATE Transaction_Distributions
 SET Adjusted_Utility_Payment =PRM.P
@@ -373,6 +374,7 @@ update Transaction_Distributions
 set Adjusted_Utility_Payment = CASE WHEN Transaction_Category_ID = 17 AND Utility_Payment IS NOT NULL THEN Utility_Payment ELSE Transaction_Distributed_Amount END
 WHERE Recon_Flag = 1
 and Partial_Service_Period IS NULL
+and Transaction_Category_ID <> 20
 ;
 Update Transaction_Distributions
 SET Recon_Flag = 0
