@@ -48,8 +48,13 @@
 ----17.0
 --:r .\iterations\17.0\insert_version.sql
 
---18.0
-:r .\iterations\18.0\insert_version.sql
+----18.0
+--:r .\iterations\18.0\insert_version.sql
+
+
+--19.0
+:r .\iterations\19.0\insert_version.sql
+
 
 
 
