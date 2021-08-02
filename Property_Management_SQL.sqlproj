@@ -139,6 +139,7 @@
     <None Include="Post_Deploy\Iterations\17.0\Insert_Version.sql" />
     <None Include="Post_Deploy\Iterations\18.0\Insert_Version.sql" />
     <None Include="Post_Deploy\Iterations\19.0\Insert_Version.sql" />
+    <None Include="Post_Deploy\Iterations\19.0\update_transaction_category_reduced_partial_rent.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Property_Management_SQL.refactorlog" />
