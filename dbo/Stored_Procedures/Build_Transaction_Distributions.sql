@@ -277,7 +277,7 @@ UPDATE Transaction_Distributions
 SET [Transaction_Distribution_Service_Begin_Month] = LEFT(CONVERT(varchar(8),Service_Begin_Date,112),6)
 ;
 UPDATE Transaction_Distributions
-SET [Transaction_Distribution_Service_End_Month] = LEFT(CONVERT(varchar(8),Service_Begin_Date,112),6)
+SET [Transaction_Distribution_Service_End_Month] = LEFT(CONVERT(varchar(8),Service_End_Date,112),6)
 ;
 UPDATE Transaction_Distributions
 SET Transaction_Distribution_Year = YEAR(Transaction_Date)
