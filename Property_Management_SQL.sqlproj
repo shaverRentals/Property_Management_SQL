@@ -105,6 +105,7 @@
     <Build Include="dbo\Tables\Recon_Pivot.sql" />
     <Build Include="dbo\Views\Recon_Source.sql" />
     <Build Include="dbo\Stored_Procedures\Backup_Production.sql" />
+    <Build Include="dbo\Tables\Utility_Recon.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post_Deploy\Script.PostDeployment.sql" />
