@@ -455,84 +455,81 @@ AS
 	UPDATE Utility_Recon
 	SET Date_Refreshed = GETDATE()
 	;
-	--UPDATE  Utility_Recon
-	--SET Recon_Flag = 0
-	--where Recon_Flag IS NULL
-	--;
 	
-	--TRUNCATE TABLE Recon_Pivot
-	--;
-	--INSERT INTO Recon_Pivot
-	--(
-	-- [Lease_ID]
-	-- ,[Lease_Description]
-	-- ,Lease_Begin_Date
-	-- ,Lease_End_Date
-	-- ,[Transaction_Date]
-	-- ,Transaction_Distribution_Payment_Month
-	-- ,[Utilities_Paid]
-	-- ,[Rent_Partial]
-	-- ,[City]
-	-- ,[Power]
-	-- ,[Gas]
-	--)
-	--SELECT DISTINCT
-	-- Lease_ID
-	-- ,Lease_Description
-	-- ,Lease_Begin_Date
-	-- ,Lease_End_Date
-	-- ,Transaction_Date 
-	-- ,Transaction_Distribution_Payment_Month
-	-- ,[Rent]
-	-- ,[Rent Reduced/Partial]
-	-- ,[Utilities City]
-	-- ,[Utilities Power]
-	-- ,[Utilities Gas]
-	--FROM 
-	--(
-	--SELECT 
-	--	  Lease_Description
-	--	  ,TD.Lease_ID
-	--	  ,Transaction_Date
-	--	  ,Transaction_Distribution_Payment_Month
-	--	  ,Adjusted_Utility_Payment
-	--	  ,TD.Transaction_Category_ID
-	--	  ,TC.Transaction_Category
-	--	  ,L.Lease_Begin_Date
-	--	  ,L.Lease_End_Date
-	--	  FROM #Transaction_Distributions_Recon
-	--	  TD INNER JOIN
-	--	  Leases L 
-	--	  ON TD.Lease_ID = L.Lease_ID
-	--	  INNER JOIN Transaction_Category TC ON
-	--	  TC.Transaction_Category_ID = TD.Transaction_Category_ID
-	--	  WHERE Recon_Flag = 1) a
-	--PIVOT( MAX(Adjusted_Utility_Payment)
-	--FOR Transaction_Category IN([Rent],[Rent Reduced/Partial],[Utilities City],[Utilities Power],[Utilities Gas])
-	--) AS P 
-	--UPDATE Recon_Pivot
-	--SET City = 0 where city IS NULL
-	--;
-	--UPDATE Recon_Pivot
-	--SET [Power] = 0 where [Power]IS NULL
-	--;
-	--UPDATE Recon_Pivot
-	--SET gas = 0 where gas IS NULL
-	--;
-	--UPDATE Recon_Pivot
-	--SET Utilities_Paid  = 0
-	--WHERE Utilities_Paid IS NULL
-	--;
-	--UPDATE Recon_Pivot
-	--SET Total_Utilites  = [POWER] + Gas + City
-	--;
-	--UPDATE Recon_Pivot
-	--SET Utilities_Paid = Rent_Partial
-	--where Rent_Partial is not null;
-	--;
-	--UPDATE Recon_Pivot
-	--SET Difference = (Utilities_Paid -Total_Utilites)
-	--;
+	
+	TRUNCATE TABLE Recon_Pivot
+	;
+	INSERT INTO Recon_Pivot
+	(
+	 [Lease_ID]
+	 ,[Lease_Description]
+	 ,Lease_Begin_Date
+	 ,Lease_End_Date
+	 ,[Transaction_Date]
+	 ,Transaction_Distribution_Payment_Month
+	 ,[Utilities_Paid]
+	 ,[Rent_Partial]
+	 ,[City]
+	 ,[Power]
+	 ,[Gas]
+	)
+	SELECT DISTINCT
+	 Lease_ID
+	 ,Lease_Description
+	 ,Lease_Begin_Date
+	 ,Lease_End_Date
+	 ,Transaction_Date 
+	 ,Transaction_Distribution_Payment_Month
+	 ,[Rent]
+	 ,[Rent Reduced/Partial]
+	 ,[Utilities City]
+	 ,[Utilities Power]
+	 ,[Utilities Gas]
+	FROM 
+	(
+	SELECT 
+		  TD.Lease_Description
+		  ,TD.Lease_ID
+		  ,Transaction_Date
+		  ,Transaction_Distribution_Payment_Month
+		  ,Adjusted_Utility_Payment
+		  ,TD.Transaction_Category_ID
+		  ,TC.Transaction_Category
+		  ,L.Lease_Begin_Date
+		  ,L.Lease_End_Date
+		  FROM Utility_Recon
+		  TD INNER JOIN
+		  Leases L 
+		  ON TD.Lease_ID = L.Lease_ID
+		  INNER JOIN Transaction_Category TC ON
+		  TC.Transaction_Category_ID = TD.Transaction_Category_ID
+		 ) a
+	PIVOT( MAX(Adjusted_Utility_Payment)
+	FOR Transaction_Category IN([Rent],[Rent Reduced/Partial],[Utilities City],[Utilities Power],[Utilities Gas])
+	) AS P 
+	UPDATE Recon_Pivot
+	SET City = 0 where city IS NULL
+	;
+	UPDATE Recon_Pivot
+	SET [Power] = 0 where [Power]IS NULL
+	;
+	UPDATE Recon_Pivot
+	SET gas = 0 where gas IS NULL
+	;
+	UPDATE Recon_Pivot
+	SET Utilities_Paid  = 0
+	WHERE Utilities_Paid IS NULL
+	;
+	UPDATE Recon_Pivot
+	SET Total_Utilites  = [POWER] + Gas + City
+	;
+	UPDATE Recon_Pivot
+	SET Utilities_Paid = Rent_Partial
+	where Rent_Partial is not null;
+	;
+	UPDATE Recon_Pivot
+	SET Difference = (Utilities_Paid -Total_Utilites)
+	;
 
 	
 	DROP TABLE #Transaction_Distributions
