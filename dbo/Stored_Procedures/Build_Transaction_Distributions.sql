@@ -411,8 +411,13 @@ AS
 	and Transaction_Category_ID <> 20
 	;
 	UPDATE utility_Recon
-	SET Adjusted_Utility_Payment = (Adjusted_Utility_Payment * -1)
+	SET Adjusted_Utility_Payment_Balance = (Adjusted_Utility_Payment * -1)
 	WHERE Transaction_Category_ID IN(10,11,12)
+	;
+	UPDATE utility_Recon
+	SET Adjusted_Utility_Payment_Balance = Adjusted_Utility_Payment
+	WHERE Transaction_Category_ID IN(17,20)
+	;
 	UPDATE Utility_Recon
 	SET Date_Refreshed = GETDATE()
 	;
@@ -468,13 +473,8 @@ AS
 	PIVOT( MAX(Adjusted_Utility_Payment)
 	FOR Transaction_Category IN([Rent],[Rent Reduced/Partial],[Utilities City],[Utilities Power],[Utilities Gas])
 	) AS P 
-	
-	UPDATE Recon_Pivot set City = (city * - 1) 
 	;
-	UPDATE Recon_Pivot set City = (power * - 1)
-	;
-	UPDATE Recon_Pivot set City = (gas * - 1) 
-	;
+
 	UPDATE Recon_Pivot
 	SET City = 0 where city IS NULL
 	;

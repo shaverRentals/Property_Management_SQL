@@ -28,6 +28,7 @@
 	[Partial_Service_Period] [int] NULL,
 	[Utility_Payment_Per_Day] [money] NULL,
 	[Adjusted_Utility_Payment] [money] NULL,
+	[Adjusted_Utility_Payment_Balance] [money] NULL,
 	[Date_Refreshed] [datetime] NULL, 
     CONSTRAINT [PK_Utility_Recon] PRIMARY KEY ([ID])
 	)
