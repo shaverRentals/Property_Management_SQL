@@ -5,6 +5,7 @@
 	[Transaction_ID] [int] NOT NULL,
 	[Lease_ID] [int] NULL,
 	[Lease_Description] VARCHAR(244) NULL, 
+	[Lease_Status] VARCHAR(50) NULL, 
 	[Lease_Begin_Date] [date] NULL,
 	[Lease_End_Date] [date] NULL,
 	[Transaction_Category_ID] [int] NULL,

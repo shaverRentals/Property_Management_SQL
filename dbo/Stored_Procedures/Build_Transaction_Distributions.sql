@@ -288,37 +288,6 @@ AS
 	;
 
 	----Recons
-	--CREATE TABLE [dbo].[#Transaction_Distributions_Recon]
-	--(
-	--[ID] [int] IDENTITY(1,1) NOT NULL,
-	--[Transaction_Distribution_ID] [int],
-	--[Transaction_ID] [int] NOT NULL,
-	--[Lease_ID] [int] NULL,
-	--[Lease_Begin_Date] [date] NULL,
-	--[Lease_End_Date] [date] NULL,
-	--[Transaction_Category_ID] [int] NULL,
-	--[Transaction_Distribution_Type_ID] [int] NULL,
-	--[Property_ID] [int] NULL,
-	--[Property_Unit_ID] [int] NULL,
-	--[Transaction_Amount] [money] NULL,
-	--[Transaction_Distributed_Amount] [money] NULL,
-	--[Transaction_Date] [date] NULL,
-	--[Service_Begin_Date] [date] NULL,
-	--[Service_End_Date] [date] NULL,
-	--[Transaction_Distribution_Payment_Month] [int] NULL,
-	--[Transaction_Distribution_Year] [int] NULL,
-	--[Transaction_Distribution_Service_Begin_Month] [int] NULL,
-	--[Transaction_Distribution_Service_End_Month] [int] NULL,
-	--[Utility_Payment] [money] NULL,
-	--[Days_Service_Period] [int] NULL,
-	--[Payment_Days_Service_Period] [int] NULL,
-	--[Partial_Service_Period] [int] NULL,
-	--[Utility_Payment_Per_Day] [money] NULL,
-	--[Adjusted_Utility_Payment] [money] NULL,
-	--[Recon_Flag] [tinyint] NULL,
-	--[Date_Refreshed] [datetime] NULL
-	--)
-	--;
 	TRUNCATE TABLE Utility_Recon
 	;
 	INSERT INTO Utility_Recon
@@ -327,6 +296,7 @@ AS
 	,[Transaction_ID] 
 	,[Lease_ID] 
 	,Lease_Description
+	,Lease_Status
 	,[Lease_Begin_Date] 
 	,[Lease_End_Date] 
 	,[Transaction_Category_ID] 
@@ -345,18 +315,13 @@ AS
 	,[Transaction_Distribution_Service_End_Month] 
 	,[Utility_Payment] 
 	,[Days_Service_Period] 
-	--,[Payment_Days_Service_Period] 
-	--,[Partial_Service_Period] 
-	--,[Utility_Payment_Per_Day] 
-	--,[Adjusted_Utility_Payment] 
-	--,[Recon_Flag] 
-	--,[Date_Refreshed] 
 	)
 	SELECT
 	[Transaction_Distribution_ID]
 	,[Transaction_ID] 
 	,L.[Lease_ID] 
 	,L.Lease_Description + ' -- ' + TRY_CONVERT(VARCHAR(50), L.Lease_ID)
+	,L.Lease_Status
 	,L.[Lease_Begin_Date] 
 	,L.[Lease_End_Date] 
 	,TD.[Transaction_Category_ID] 
@@ -375,10 +340,6 @@ AS
 	,[Transaction_Distribution_Service_End_Month] 
 	,L.Utilitity_Payment
 	,DATEDIFF(DAY,Service_Begin_Date,Service_End_Date) + 1
-	--,[Payment_Days_Service_Period] 
-	--,[Partial_Service_Period] 
-	--,[Utility_Payment_Per_Day] 
-	--,[Adjusted_Utility_Payment] 
 	FROM Transaction_Distributions TD
 	INNER JOIN Leases L ON L.Property_Unit_ID = TD.Property_Unit_ID
 	INNER JOIN Transaction_Category TC ON
