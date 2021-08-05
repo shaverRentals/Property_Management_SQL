@@ -507,6 +507,13 @@ AS
 	PIVOT( MAX(Adjusted_Utility_Payment)
 	FOR Transaction_Category IN([Rent],[Rent Reduced/Partial],[Utilities City],[Utilities Power],[Utilities Gas])
 	) AS P 
+	
+	UPDATE Recon_Pivot set City = (city * - 1) 
+	;
+	UPDATE Recon_Pivot set City = (power * - 1)
+	;
+	UPDATE Recon_Pivot set City = (gas * - 1) 
+	;
 	UPDATE Recon_Pivot
 	SET City = 0 where city IS NULL
 	;
@@ -530,7 +537,6 @@ AS
 	UPDATE Recon_Pivot
 	SET Difference = (Utilities_Paid -Total_Utilites)
 	;
-
 	
 	DROP TABLE #Transaction_Distributions
 	;
