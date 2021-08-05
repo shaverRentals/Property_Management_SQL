@@ -4,9 +4,11 @@
 	[Transaction_Distribution_ID] [int],
 	[Transaction_ID] [int] NOT NULL,
 	[Lease_ID] [int] NULL,
+	[Lease_Description] VARCHAR(244) NULL, 
 	[Lease_Begin_Date] [date] NULL,
 	[Lease_End_Date] [date] NULL,
 	[Transaction_Category_ID] [int] NULL,
+	[Transaction_Category] VARCHAR(50) NULL, 
 	[Transaction_Distribution_Type_ID] [int] NULL,
 	[Property_ID] [int] NULL,
 	[Property_Unit_ID] [int] NULL,
@@ -25,7 +27,6 @@
 	[Partial_Service_Period] [int] NULL,
 	[Utility_Payment_Per_Day] [money] NULL,
 	[Adjusted_Utility_Payment] [money] NULL,
-	[Recon_Flag] [tinyint] NULL,
 	[Date_Refreshed] [datetime] NULL, 
     CONSTRAINT [PK_Utility_Recon] PRIMARY KEY ([ID])
 	)

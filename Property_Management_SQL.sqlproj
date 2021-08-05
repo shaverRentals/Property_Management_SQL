@@ -143,6 +143,7 @@
     <None Include="Post_Deploy\Iterations\19.0\Insert_Version.sql" />
     <None Include="Post_Deploy\Iterations\19.0\update_transaction_category_reduced_partial_rent.sql" />
     <None Include="Post_Deploy\Iterations\20.0\Insert_Version.sql" />
+    <None Include="Property_Management_SQL_TEST.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Property_Management_SQL.refactorlog" />

@@ -319,14 +319,18 @@ AS
 	--[Date_Refreshed] [datetime] NULL
 	--)
 	--;
+	TRUNCATE TABLE Utility_Recon
+	;
 	INSERT INTO Utility_Recon
 	(
 	[Transaction_Distribution_ID]
 	,[Transaction_ID] 
 	,[Lease_ID] 
+	,Lease_Description
 	,[Lease_Begin_Date] 
 	,[Lease_End_Date] 
 	,[Transaction_Category_ID] 
+	,Transaction_Category
 	,[Transaction_Distribution_Type_ID] 
 	,[Property_ID] 
 	,[Property_Unit_ID] 
@@ -341,20 +345,22 @@ AS
 	,[Transaction_Distribution_Service_End_Month] 
 	,[Utility_Payment] 
 	,[Days_Service_Period] 
-	,[Payment_Days_Service_Period] 
-	,[Partial_Service_Period] 
-	,[Utility_Payment_Per_Day] 
-	,[Adjusted_Utility_Payment] 
-	,[Recon_Flag] 
-	,[Date_Refreshed] 
+	--,[Payment_Days_Service_Period] 
+	--,[Partial_Service_Period] 
+	--,[Utility_Payment_Per_Day] 
+	--,[Adjusted_Utility_Payment] 
+	--,[Recon_Flag] 
+	--,[Date_Refreshed] 
 	)
 	SELECT
 	[Transaction_Distribution_ID]
 	,[Transaction_ID] 
 	,L.[Lease_ID] 
+	,L.Lease_Description + ' -- ' + TRY_CONVERT(VARCHAR(50), L.Lease_ID)
 	,L.[Lease_Begin_Date] 
 	,L.[Lease_End_Date] 
-	,[Transaction_Category_ID] 
+	,TD.[Transaction_Category_ID] 
+	,Case when TC.Transaction_Category_ID IN(17,20) THEN 'Tennant Paid' ELSE TC.Transaction_Category END
 	,[Transaction_Distribution_Type_ID] 
 	,[Property_ID] 
 	,L.[Property_Unit_ID] 
@@ -373,17 +379,23 @@ AS
 	--,[Partial_Service_Period] 
 	--,[Utility_Payment_Per_Day] 
 	--,[Adjusted_Utility_Payment] 
-	,1
-	,[Date_Refreshed] 
 	FROM Transaction_Distributions TD
 	INNER JOIN Leases L ON L.Property_Unit_ID = TD.Property_Unit_ID
+	INNER JOIN Transaction_Category TC ON
+	TC.Transaction_Category_ID = TD.Transaction_Category_ID
 	WHERE Service_Begin_Date < = L.Lease_End_Date
 	AND Service_End_Date > = L.Lease_Begin_Date
 	AND TD.Transaction_Category_ID IN(12,10,11,17,20)
+	order by 
+	Lease_Description
+	,Lease_Begin_Date
+	,Transaction_Category
+	,Transaction_Date
+	
 	;
 	UPDATE Utility_Recon
 	SET Partial_Service_Period = 1
-	WHERE Lease_Begin_Date BETWEEN Service_Begin_Date AND Service_End_Date
+	WHERE Lease_Begin_Date BETWEEN Service_Begin_Date AND DATEADD(D,-1,Service_End_Date)
 	;
 	UPDATE Utility_Recon
 	SET Partial_Service_Period = 2
@@ -434,14 +446,19 @@ AS
 	;
 	UPDATE Utility_Recon
 	set Adjusted_Utility_Payment = CASE WHEN Transaction_Category_ID = 17 AND Utility_Payment IS NOT NULL THEN Utility_Payment ELSE Transaction_Distributed_Amount END
-	WHERE Recon_Flag = 1
-	and Partial_Service_Period IS NULL
+	WHERE Partial_Service_Period IS NULL
 	and Transaction_Category_ID <> 20
 	;
-	UPDATE  Utility_Recon
-	SET Recon_Flag = 0
-	where Recon_Flag IS NULL
+	UPDATE utility_Recon
+	SET Adjusted_Utility_Payment = (Adjusted_Utility_Payment * -1)
+	WHERE Transaction_Category_ID IN(10,11,12)
+	UPDATE Utility_Recon
+	SET Date_Refreshed = GETDATE()
 	;
+	--UPDATE  Utility_Recon
+	--SET Recon_Flag = 0
+	--where Recon_Flag IS NULL
+	--;
 	
 	--TRUNCATE TABLE Recon_Pivot
 	--;
