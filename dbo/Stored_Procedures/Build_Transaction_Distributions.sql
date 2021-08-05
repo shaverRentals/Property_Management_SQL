@@ -356,7 +356,7 @@ AS
 	;
 	UPDATE Utility_Recon
 	SET Partial_Service_Period = 1
-	WHERE Lease_Begin_Date BETWEEN Service_Begin_Date AND DATEADD(D,-1,Service_End_Date)
+	WHERE Lease_Begin_Date BETWEEN Service_Begin_Date AND Service_End_Date
 	;
 	UPDATE Utility_Recon
 	SET Partial_Service_Period = 2
