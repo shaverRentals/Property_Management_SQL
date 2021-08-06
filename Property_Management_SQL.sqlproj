@@ -81,6 +81,7 @@
     <Folder Include="Post_Deploy\Iterations\18.0" />
     <Folder Include="Post_Deploy\Iterations\19.0" />
     <Folder Include="Post_Deploy\Iterations\20.0" />
+    <Folder Include="Post_Deploy\Iterations\21.0" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Properties.sql" />
@@ -107,6 +108,7 @@
     <Build Include="dbo\Views\Recon_Source.sql" />
     <Build Include="dbo\Stored_Procedures\Backup_Production.sql" />
     <Build Include="dbo\Tables\Utility_Recon.sql" />
+    <Build Include="dbo\Tables\Income_Tax_IRS.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post_Deploy\Script.PostDeployment.sql" />
@@ -144,6 +146,9 @@
     <None Include="Post_Deploy\Iterations\19.0\update_transaction_category_reduced_partial_rent.sql" />
     <None Include="Post_Deploy\Iterations\20.0\Insert_Version.sql" />
     <None Include="Property_Management_SQL_TEST.publish.xml" />
+    <None Include="Post_Deploy\Iterations\21.0\Insert_Version.sql" />
+    <None Include="Post_Deploy\Iterations\21.0\update-irs-transaction-categories.sql" />
+    <None Include="Post_Deploy\Iterations\21.0\fix-transaction-distribution-values-358-8th.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Property_Management_SQL.refactorlog" />
