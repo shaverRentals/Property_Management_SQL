@@ -15,3 +15,7 @@ UPDATE Transaction_Category
 SET Transaction_Category_IRS = Transaction_Category
 where Transaction_Category_IRS IS NULL
 ;
+UPDATE Transaction_Category
+SET Transaction_Category_IRS = 'Other'
+where Transaction_Category_ID IN(14)
+;
