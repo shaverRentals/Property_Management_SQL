@@ -13,7 +13,6 @@
 [From_Security_Deposit] BIT NULL, 
 [Service_Begin_Date] DATE NULL , 
 [Service_End_Date] DATE NULL , 
-[Transaction_Payment_Year_IRS] INT,
 [Historical_Record] TINYINT NULL DEFAULT 0, 
     CONSTRAINT [FK_Transactions_ToTransactionCategory] FOREIGN KEY ([Transaction_Category_ID]) REFERENCES [Transaction_Category]([Transaction_Category_ID]) 
     ,
