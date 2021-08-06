@@ -501,3 +501,37 @@ AS
 	
 	DROP TABLE #Transaction_Distributions
 	;
+
+	--IRS
+	TRUNCATE TABLE Income_Tax_IRS
+	;
+	INSERT INTO Income_Tax_IRS
+	(
+	 Transaction_Distribution_ID
+	 ,Transaction_Date
+	 ,Property_Name
+	 ,Property_Owner_Name
+	 ,Transaction_Category_IRS
+	 ,Transaction_Amount
+	 ,Transaction_Payment_Year_IRS
+	)
+	SELECT DISTINCT
+	  Transaction_Distribution_ID
+	  ,Transaction_Date
+	 ,P.Street
+	 ,PO.Property_Owner_Description
+	 ,TC.Transaction_Category_IRS
+	 ,TD.Transaction_Distributed_Amount
+	 ,TD.Transaction_Distribution_Year
+	FROM Transaction_Distributions TD
+	INNER JOIN Transaction_Category TC ON
+	TD.Transaction_Category_ID = TC.Transaction_Category_ID
+	INNER JOIN Properties P ON
+	P.Property_ID = TD.Property_ID
+	INNER JOIN Property_Owner PO ON
+	PO.Property_Owner_ID = P.Property_Owner_ID
+	ORDER BY
+	Street
+	,Transaction_Distribution_Year
+	,Transaction_Date
+	;
