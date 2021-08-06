@@ -62,6 +62,7 @@
 
 --20.0
 :r .\iterations\21.0\insert_version.sql
+:r .\iterations\21.0\update-irs-transaction-categories.sql
 
 
 
