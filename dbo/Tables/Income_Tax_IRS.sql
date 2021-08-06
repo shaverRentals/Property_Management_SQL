@@ -2,6 +2,7 @@
 (
 	[ID] INT NOT NULL PRIMARY KEY IDENTITY, 
     [Transaction_Distribution_ID] INT,
+    [Transaction_ID] INT,
     [Transaction_Date] DATE NULL, 
     [Property_Name] VARCHAR(50) NULL, 
     [Property_Owner_Name] VARCHAR(50) NULL,

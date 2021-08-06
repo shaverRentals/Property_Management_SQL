@@ -508,6 +508,7 @@ AS
 	INSERT INTO Income_Tax_IRS
 	(
 	 Transaction_Distribution_ID
+	 ,Transaction_ID
 	 ,Transaction_Date
 	 ,Property_Name
 	 ,Property_Owner_Name
@@ -517,6 +518,7 @@ AS
 	)
 	SELECT DISTINCT
 	  Transaction_Distribution_ID
+	  ,Transaction_ID 
 	  ,Transaction_Date
 	 ,P.Street
 	 ,PO.Property_Owner_Description
