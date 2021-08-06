@@ -148,6 +148,7 @@
     <None Include="Property_Management_SQL_TEST.publish.xml" />
     <None Include="Post_Deploy\Iterations\21.0\Insert_Version.sql" />
     <None Include="Post_Deploy\Iterations\21.0\update-irs-transaction-categories.sql" />
+    <None Include="Post_Deploy\Iterations\21.0\fix-transaction-distribution-values-358-8th.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Property_Management_SQL.refactorlog" />
