@@ -56,10 +56,12 @@
 --:r .\iterations\19.0\insert_version.sql
 --:r .\iterations\19.0\update_transaction_category_reduced_partial_rent.sql
 
+----20.0
+--:r .\iterations\20.0\insert_version.sql
 
 
---20.=0
-:r .\iterations\20.0\insert_version.sql
+--20.0
+:r .\iterations\21.0\insert_version.sql
 
 
 
