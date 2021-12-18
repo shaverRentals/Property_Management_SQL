@@ -125,6 +125,7 @@ AS
 		PU.Property_ID = P.Property_ID
 		WHERE TD.Transaction_Distribution_Type_ID = 7
 		AND Transaction_Category_ID = 12
+		AND PU.Share_City <>1
 		;
 	--City
 	INSERT INTO Transaction_Distributions
@@ -158,6 +159,7 @@ AS
 		PU.Property_ID = P.Property_ID
 		WHERE TD.Transaction_Distribution_Type_ID = 7
 		AND Transaction_Category_ID = 10
+		AND PU.Share_City <>1
 		;
 	--Electric
 	INSERT INTO Transaction_Distributions
@@ -191,6 +193,7 @@ AS
 		PU.Property_ID = P.Property_ID
 		WHERE TD.Transaction_Distribution_Type_ID = 7
 		AND Transaction_Category_ID = 11
+		AND PU.Share_City <>1
 		;
 	--General
 	INSERT INTO Transaction_Distributions
