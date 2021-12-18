@@ -60,10 +60,10 @@
 --:r .\iterations\20.0\insert_version.sql
 
 
---21.0
-:r .\iterations\21.0\insert_version.sql
-:r .\iterations\21.0\update-irs-transaction-categories.sql
-:r .\iterations\21.0\fix-transaction-distribution-values-358-8th.sql
+----21.0
+--:r .\iterations\21.0\insert_version.sql
+--:r .\iterations\21.0\update-irs-transaction-categories.sql
+--:r .\iterations\21.0\fix-transaction-distribution-values-358-8th.sql
 
 --22.0
 :r .\iterations\22.0\insert_version.sql
